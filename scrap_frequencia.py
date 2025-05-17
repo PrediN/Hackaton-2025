@@ -55,7 +55,7 @@ try:
 
     print("🔍 Extraindo Frequencia...")
     df_despesas = extrair_despesas()
-    df_despesas.to_excel("despesas.xslx", index=False)
+    df_despesas.to_csv("frequencia.csv", index=False)
 
 finally:
     driver.quit()
