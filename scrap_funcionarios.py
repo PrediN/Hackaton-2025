@@ -41,5 +41,5 @@ dados_funcionarios = extrair_tabela()
 with pd.ExcelWriter("funcionarios.xlsx") as writer:
     pd.DataFrame(dados_funcionarios[1:], columns=dados_funcionarios[0]).to_excel(writer, sheet_name="Funcionarios", index=False)
 
-print("Dados de Orçamentos exportados com sucesso!")
+print("Dados de Funcionários exportados com sucesso!")
 driver.quit()
