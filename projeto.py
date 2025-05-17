@@ -40,18 +40,19 @@ cargos = st.sidebar.multiselect(
 df_selecao = df.query("Setor in @setores and Cargo in @cargos")
 
 # Título
-st.title("📊 Gráfico de Funcionários por Cargo")
+st.title("Distribuição de Funcionários por Cargo")
 
-# Gráfico de Barras: Funcionários e seus Cargos
-fig_funcionarios = px.bar(
-    df_selecao,
-    x='Nome',
-    color='Cargo',
-    title='Funcionários e seus Cargos',
-    labels={'Nome': 'Funcionário'},
-    height=500
+# Contagem por cargo
+df_pizza = df_selecao['Cargo'].value_counts().reset_index()
+df_pizza.columns = ['Cargo', 'Total']
+
+# Gráfico de Pizza
+fig_pizza = px.pie(
+    df_pizza,
+    names='Cargo',
+    values='Total',
+    title='Funcionários por Cargo',
+    hole=0.4  # Para estilo donut (ou remova para pizza tradicional)
 )
 
-fig_funcionarios.update_layout(xaxis_tickangle=-45)
-
-st.plotly_chart(fig_funcionarios, use_container_width=True)
+st.plotly_chart(fig_pizza, use_container_width=True)
